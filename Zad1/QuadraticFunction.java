@@ -4,7 +4,7 @@ public class QuadraticFunction
 {
 	int a,b,c;
 	double delta;
-	int solutinCounter;
+	int solutionCounter;
 	double x1,x2,x0;
 	
 	public QuadraticFunction(int a, int b, int c) throws Exception
@@ -19,14 +19,14 @@ public class QuadraticFunction
 	private void calculateDelta()
 	{
 		delta = b*b - 4 * a * c;
-		if(delta == 0) solutinCounter = 1;
-		else if(delta  > 0) solutinCounter = 2;
-		else solutinCounter = 0;
+		if(delta == 0) solutionCounter = 1;
+		else if(delta  > 0) solutionCounter = 2;
+		else solutionCounter = 0;
 	}
 	
 	public void calculateSolutions() throws Exception
 	{
-		switch(solutinCounter)
+		switch(solutionCounter)
 		{	
 			case 0:
 			break;
@@ -47,7 +47,7 @@ public class QuadraticFunction
 	
 	public String solutionsAnalysis() throws Exception
 	{
-		switch(solutinCounter)
+		switch(solutionCounter)
 		{	
 			case 0:
 			return "No solutions in real numbers";

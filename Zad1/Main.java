@@ -4,13 +4,13 @@ class Main
 	{
 		try
 		{
-			QuadraticFunction fcja = new QuadraticFunction(
+			QuadraticFunction quadraticEquation = new QuadraticFunction(
 			Integer.parseInt(args[0]),
 			Integer.parseInt(args[1]),
 			Integer.parseInt(args[2]));
 			
-			fcja.calculateSolutions();
-			System.out.println(fcja.solutionsAnalysis());
+			quadraticEquation.calculateSolutions();
+			System.out.println(quadraticEquation.solutionsAnalysis());
 			
 		}
 		catch (IndexOutOfBoundsException e)
