@@ -1,4 +1,5 @@
 import java.lang.*;
+import java.text.DecimalFormat;
 
 public class QuadraticFunction
 {
@@ -47,16 +48,32 @@ public class QuadraticFunction
 	
 	public String solutionsAnalysis() throws Exception
 	{
+		DecimalFormat dec = new DecimalFormat("#0.00");
 		switch(solutionCounter)
 		{	
 			case 0:
-			return "No solutions in real numbers";
+			String complex = new String();
+			complex += "x1 = " + dec.format(-b/(2*a));
+			
+			if(a < 0)
+				complex += " + " + dec.format(Math.sqrt(Math.abs(delta))) + "i\n";
+			else
+				complex += " - " + dec.format(Math.sqrt(Math.abs(delta))) + "i\n";
+			
+			complex += "x2 = " + dec.format(-b/(2*a));
+			if(a > 0)
+				complex += " + " + dec.format(Math.sqrt(Math.abs(delta))) + "i\n";
+			else
+				complex += " - " + dec.format(Math.sqrt(Math.abs(delta))) + "i\n";
+			
+			return complex;
+			
 			
 			case 1:
-			return "x0 = " + Double.toString(x0); 
+			return "x0 = " + dec.format(x0); 
 			
 			case 2:
-			return "x1 = " + Double.toString(x1) + "\nx2 = " + Double.toString(x2);
+			return "x1 = " + dec.format(x1) + "\nx2 = " + dec.format(x2);
 			
 			default:
 			throw new CriticalException("Data Error");
