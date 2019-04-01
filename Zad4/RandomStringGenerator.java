@@ -13,11 +13,11 @@ public class RandomStringGenerator
 	public String generate()
 	{
 		StringBuilder rsg = new StringBuilder(iloscZnakow);
-		String alphabet = "QERTYUIOPASFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm";
+		String alphanumerics = "QERTYUIOPASFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm";
 		Random dice = new Random();
 	
 		for(int i = 0; i < this.iloscZnakow; i++)
-			rsg.append(alphabet.charAt(dice.nextInt(alphabet.length())));
+			rsg.append(alphanumerics.charAt(dice.nextInt(alphanumerics.length())));
 			
 		return rsg.toString();
 	}
