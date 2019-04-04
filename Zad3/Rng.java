@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Rng
 {
 	Scanner input;
@@ -7,7 +9,6 @@ public class Rng
 	
 	public Rng()
 	{
-		this.input = new Scanner();
 		this.dice = new Random();
 		this.proby = 0;
 	}
