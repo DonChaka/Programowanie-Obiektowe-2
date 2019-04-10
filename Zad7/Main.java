@@ -17,9 +17,9 @@ public class Main
 		
 		TreeMap <NrTelefoniczny, Wpis> ksiazkaTelefoniczna = new TreeMap<NrTelefoniczny, Wpis>();
 		
-		ksiazkaTelefoniczna.put(osoba1.nrTelefonu , osoba1);
-        ksiazkaTelefoniczna.put(osoba2.nrTelefonu , osoba2);
-        ksiazkaTelefoniczna.put(osoba3.nrTelefonu , osoba3);
+		ksiazkaTelefoniczna.put(osoba1.nrTelefonu, osoba1);
+        ksiazkaTelefoniczna.put(osoba2.nrTelefonu, osoba2);
+        ksiazkaTelefoniczna.put(osoba3.nrTelefonu, osoba3);
 
         ksiazkaTelefoniczna.put(firma1.nrTelefonu, firma1);
         ksiazkaTelefoniczna.put(firma2.nrTelefonu, firma2);
@@ -29,6 +29,5 @@ public class Main
 		{
 			iterator.getValue().opis();
 		}
-			
 	}
 }
