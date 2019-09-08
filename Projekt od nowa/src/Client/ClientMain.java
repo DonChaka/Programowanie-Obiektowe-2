@@ -1,3 +1,5 @@
+//TODO javadoc
+
 package Client;
 
 import Utils.Tools;
@@ -69,10 +71,12 @@ public class ClientMain extends Application {
 
         client = new ClientThread("127.0.0.1", 2137, path, userName, threads);
         threads.submit(this::directoryWatcher);
-
-        /*directoryWatcher = new Thread(new DirectoryWatcher(), "DirectoryWatcher");
-        directoryWatcher.start();*/
     }
+
+    /**
+    * Function oversees users folder and puts its content onto the application window.
+    * If anything changes, function gets folder content again and updates list view
+    */
 
     private void directoryWatcher()
     {
@@ -92,10 +96,7 @@ public class ClientMain extends Application {
                 for (WatchEvent event : events) {
                     if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE || event.kind() == StandardWatchEventKinds.ENTRY_DELETE) {
                         List<String> fileList = Tools.FileLister(path);
-                        Platform.runLater(() -> {
-                                    controller.displayFiles(fileList);
-                                }
-                        );
+                        Platform.runLater(() -> controller.displayFiles(fileList));
                         break;
                     }
                 }

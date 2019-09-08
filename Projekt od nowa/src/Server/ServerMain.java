@@ -1,3 +1,5 @@
+//TODO javadoc
+
 package Server;
 
 import Utils.Tools;
@@ -29,10 +31,10 @@ public class ServerMain extends Application
 
     private static ServerThread server = ServerThread.getServer();
 
-    static ServerController controller;
-    ExecutorService threads;
+    private static ServerController controller;
+    private ExecutorService threads;
 
-    public static List<String> availableUsers;
+    static List<String> availableUsers;
 
     private String file2style(File style)
     {
@@ -68,7 +70,7 @@ public class ServerMain extends Application
             primaryStage.setResizable(false);
             Scene scene = new Scene(root, 450, 400);
             primaryStage.setScene(scene);
-            String styl = file2style(new File("C:\\Users\\Hana\\IdeaProjects\\Projekt od nowa\\src\\Server\\Victoria.css"));
+            String styl = file2style(new File("D:\\GitHub\\Programowanie-Obiektowe-2\\Projekt od nowa\\src\\Server\\Victoria.css"));
             if(styl != null)
             scene.getStylesheets().add(styl);
             primaryStage.show();
@@ -97,9 +99,7 @@ public class ServerMain extends Application
                 for (WatchEvent event : events) {
                     if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE || event.kind() == StandardWatchEventKinds.ENTRY_DELETE) {
                         availableUsers = Tools.FileLister(PATHS[0]);
-                        Platform.runLater(() -> {
-                                    controller.displayUsers(availableUsers);
-                                }
+                        Platform.runLater(() -> controller.displayUsers(availableUsers)
                         );
                         break;
                     }
@@ -107,9 +107,7 @@ public class ServerMain extends Application
             }
         }
         catch(InterruptedException e)
-        {
-            return;
-        }
+        {}
         catch (IOException e) {
             e.printStackTrace();
         }
