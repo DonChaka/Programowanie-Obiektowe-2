@@ -1,3 +1,5 @@
+//TODO javadoc
+
 package Client;
 
 import Utils.FileContainer;
@@ -11,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 
 class ClientSynchronizer {
 
-    private final int bumper = 1500;
+    private final int bumper = 2000;
 
     private ObjectOutputStream out;
     private ObjectInputStream in;
@@ -19,6 +21,16 @@ class ClientSynchronizer {
     private String path;
     private List<FileContainer> prioritizedFiles;
     private String userName;
+
+    /**
+     *
+     * @param in input stream from server
+     * @param out output stream for server
+     * @param path observed path
+     * @param threads thread pool
+     * @param prioritizedFiles list of files to be sent to other users
+     * @param username username of client
+     */
 
     ClientSynchronizer(ObjectInputStream in, ObjectOutputStream out, String path, ExecutorService threads, List<FileContainer> prioritizedFiles, String username)
     {
@@ -30,6 +42,17 @@ class ClientSynchronizer {
         this.userName = username;
     }
 
+
+    /**
+     * This function with ServerSynchronizer keeps both local and server folders up to date to each other.
+     * Data is exchanged in such order:
+     *  - Server sends list of available users
+     *  - Client sends list of their files
+     *  - Server sends list of files missing on server
+     *  - Client sends one file missing on server or sends file to another user
+     *  - Server saves file to proper user folders
+     *  - Server sends one file missing on client
+     */
     void synchronizer() {
         for (;;)
         {
@@ -41,6 +64,7 @@ class ClientSynchronizer {
                 Thread.sleep(25); // lekki spowalniacz oraz opcja na zamkniecie watku przez interruptedException
 
                 List<String> loggedUsers = (List<String>) in.readObject();
+                loggedUsers.remove(userName);
                 ClientMain.controller.displayUsers(loggedUsers);
 
                 //Start wysylania jednego(1) pliku na serwer;
@@ -105,6 +129,7 @@ class ClientSynchronizer {
                 for(int i = 0 ; i < k ; i++)
                     for(int j = 0; j < k; j++)
                         Math.pow(Math.log10(Math.log10(Math.log10(i))), j);
+
                 if(recived.getOwner().equals(userName))
                 {
                     threads.submit( () ->
@@ -122,7 +147,6 @@ class ClientSynchronizer {
                 }
                 //wyslane i odebrane czyli od poczatku
 
-
             }
             catch (InterruptedException | SocketException e)
             {
@@ -134,12 +158,3 @@ class ClientSynchronizer {
         }
     }
 }
-
-/*
-    File file = new File (path + "\\" + files2Send.get(0));
-    byte[] content = new byte[(int)myFile.length()];
-    fis = new FileInputStream(file);
-    bis = new BufferedInputStream(fis);
-    bis.read(content, 0, content.length());
-
- */

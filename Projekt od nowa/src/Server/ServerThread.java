@@ -1,3 +1,5 @@
+//TODO javadoc
+
 package Server;
 
 import java.io.File;
@@ -67,7 +69,7 @@ class ServerThread {
                 }
 
                 ServerSynchronizer synchronizer = new ServerSynchronizer(in, out, PATHS, threads, userName, waiting, loggedUsers);
-                threads.submit(synchronizer::synchronize);
+                threads.submit(synchronizer::synchronizer);
             }
             catch(Exception e)
             {

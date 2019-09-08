@@ -19,6 +19,16 @@ class ServerSynchronizer
     private Socket socket;
     private List<String> loggedUsers;
 
+    /**
+     * @param in input stream from client
+     * @param out output stream for client
+     * @param PATHS server folders
+     * @param threads thread pool
+     * @param userName username of client
+     * @param socket Socket connecting client and server
+     * @param loggedUsers list of available users
+     */
+
     ServerSynchronizer(ObjectInputStream in, ObjectOutputStream out, String[] PATHS, ExecutorService threads, String userName, Socket socket, List<String> loggedUsers)
     {
         this.in = in;
@@ -30,9 +40,20 @@ class ServerSynchronizer
         this.loggedUsers = loggedUsers;
     }
 
-    void synchronize()
+
+    /**
+     * This function with ClientSynchronizer keeps both local and server folders up to date to each other.
+     * Data is exchanged in such order:
+     *  - Server sends list of available users
+     *  - Client sends list of their files
+     *  - Server sends list of files missing on server
+     *  - Client sends one file missing on server or sends file to another user
+     *  - Server saves file to proper user folders
+     *  - Server sends one file missing on client
+     */
+    void synchronizer()
     {
-        while(true)
+        for(;;)
         {
             try
             {
@@ -121,7 +142,7 @@ class ServerSynchronizer
 
                 return;
             }
-            catch (IOException | ClassNotFoundException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
@@ -131,28 +152,3 @@ class ServerSynchronizer
     }
 
 }
-
- /*
-                            try(FileWriter fileOutput = new FileWriter(PATHS[finalI] + "\\" + recivedFile.getOwner() + "\\" + recivedFile.getName()))
-                            {
-                                fileOutput.write(recivedFile.getContent());
-                            }
-                            catch (IOException e)
-                            {
-                                e.printStackTrace();
-                            }*/
-/*
-try (Scanner fileInput = new Scanner(new File(PATHS[0] + "\\" + userName + "\\" + missingOnClient.get(0)))) {
-        StringBuilder fileContent = new StringBuilder();
-
-        while (fileInput.hasNextLine())
-        fileContent.append(fileInput.nextLine());
-
-        FileContainer sending = new FileContainer(userName, missingOnClient.get(0), fileContent.toString());
-        out.writeObject(sending);
-        }
-        catch (IOException e)
-        {
-        e.printStackTrace();
-        }
-*/

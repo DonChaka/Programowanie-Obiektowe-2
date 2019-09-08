@@ -63,18 +63,3 @@ class ClientThread
         threads.submit(synchro::synchronizer);
     }
 }
-
-       /*try (Scanner fileInput = new Scanner(new File(path + "/" + name))) {
-            System.out.println(name + " dla " + receiver);
-            StringBuilder fileContent = new StringBuilder();
-
-            while (fileInput.hasNextLine())
-                fileContent.append(fileInput.nextLine());
-
-            FileContainer sending = new FileContainer(receiver, name, fileContent.toString());
-            prioritizedFiles.add(sending);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }*/
