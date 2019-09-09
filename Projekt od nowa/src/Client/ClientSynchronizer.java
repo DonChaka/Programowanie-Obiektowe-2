@@ -1,5 +1,3 @@
-//TODO javadoc
-
 package Client;
 
 import Utils.FileContainer;
@@ -11,27 +9,57 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 
-class ClientSynchronizer {
-
-    private final int bumper = 2000;
-
+/**
+ * Class synchronizing files with server
+ * @author Szymon Kuzik
+ * @version 1.0
+ */
+class ClientSynchronizer
+{
+    /**
+     * ObjectOutputStream of client
+     */
     private ObjectOutputStream out;
+
+    /**
+     * ObjectInputStream of client
+     */
     private ObjectInputStream in;
+
+    /**
+     * Thread pool
+     */
     private ExecutorService threads;
+
+    /**
+     * Path to local folder
+     */
     private String path;
+
+    /**
+     * List of files to be sent to other users
+     */
     private List<FileContainer> prioritizedFiles;
+
+    /**
+     * Username of client
+     */
     private String userName;
 
     /**
+     * Slower to simulate network lags
+     */
+    private final int bumper = 2000;
+
+    /**
      *
-     * @param in input stream from server
-     * @param out output stream for server
+     * @param in input stream of client
+     * @param out output stream of client
      * @param path observed path
      * @param threads thread pool
      * @param prioritizedFiles list of files to be sent to other users
      * @param username username of client
      */
-
     ClientSynchronizer(ObjectInputStream in, ObjectOutputStream out, String path, ExecutorService threads, List<FileContainer> prioritizedFiles, String username)
     {
         this.in = in;
@@ -53,10 +81,12 @@ class ClientSynchronizer {
      *  - Server saves file to proper user folders
      *  - Server sends one file missing on client
      */
-    void synchronizer() {
+    void synchronizer()
+    {
         for (;;)
         {
-            try {
+            try
+            {
 
                 Random rand = new Random();
 

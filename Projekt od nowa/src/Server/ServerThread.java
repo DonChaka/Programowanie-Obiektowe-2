@@ -1,5 +1,3 @@
-//TODO javadoc
-
 package Server;
 
 import java.io.File;
@@ -12,14 +10,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+/**
+ * Class waiting for new clients and creating new synchronizer threads for them
+ *
+ * @author Szymon Kuzik
+ * @version 1.0
+ */
 class ServerThread {
 
+    /**
+     * Instance of server
+     */
     private static ServerThread server;
 
+    /**
+     * ServerSocket of server
+     */
     private ServerSocket serverSocket;
-    private ExecutorService threads;
-    private List<String> loggedUsers;
 
+    /**
+     * Thread pool
+     */
+    private ExecutorService threads;
+
+    /**
+     * List of available users
+     */
+    private List<String> availableUsers;
+
+    /**
+     * Paths to server discs
+     */
     private final String[] PATHS ={
             "D:\\CatchBox\\Mount 1",
             "D:\\CatchBox\\Mount 2",
@@ -29,7 +50,10 @@ class ServerThread {
     };
 
 
-
+    /**
+     * Function creates new instance of server if there is none
+     * @return active ServerThread instance
+     */
     static ServerThread getServer()
     {
         if(server == null)
@@ -37,16 +61,25 @@ class ServerThread {
         return server;
     }
 
+    /**
+     * Function initialize ServerSocket and starts thread connectionHandler
+     * @param port Port on which server should start
+     * @param threads Thread pool of the server
+     * @throws IOException couldn't create ServerSocket
+     */
     void init(int port, ExecutorService threads) throws IOException
     {
         server.serverSocket = new ServerSocket(port);
-        loggedUsers = new ArrayList<>();
+        availableUsers = new ArrayList<>();
 
         this.threads = threads;
         threads.submit(this::connectionHandler);
 
     }
 
+    /**
+     * Method waiting for new clients and starting new synchronizer threads for them
+     */
     private void connectionHandler()
     {
         while (true) {
@@ -59,8 +92,7 @@ class ServerThread {
 
                 String userName = (String)in.readObject();
                 System.out.println("Connetion with " + userName);
-                loggedUsers.add(userName);
-                //ServerMain.displayUsers(loggedUsers);
+                availableUsers.add(userName);
                 for (String path : PATHS) {
                     File folder = new File(path + "\\" + userName);
 
@@ -68,7 +100,7 @@ class ServerThread {
                         folder.mkdir();
                 }
 
-                ServerSynchronizer synchronizer = new ServerSynchronizer(in, out, PATHS, threads, userName, waiting, loggedUsers);
+                ServerSynchronizer synchronizer = new ServerSynchronizer(in, out, PATHS, threads, userName, waiting, availableUsers);
                 threads.submit(synchronizer::synchronizer);
             }
             catch(Exception e)

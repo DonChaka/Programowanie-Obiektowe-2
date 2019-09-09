@@ -8,8 +8,19 @@ import java.io.Serializable;
  */
 public class FileContainer implements Serializable {
 
+    /**
+     * Owner of the file
+     */
     private String owner;
+
+    /**
+     * content of the file
+     */
     private byte[] content;
+
+    /**
+     * name of the file
+     */
     private String name;
 
     /**
