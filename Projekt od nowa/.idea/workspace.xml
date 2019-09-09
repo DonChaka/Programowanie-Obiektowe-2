@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt od nowa.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientSynchronizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientSynchronizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Client/ClientThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerSynchronizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerSynchronizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Server/ServerThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Utils/FileContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Utils/FileContainer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projekt od nowa/Utils/Tools.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projekt od nowa/Utils/Tools.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientSynchronizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientSynchronizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/ClientThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ServerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/ServerSynchronizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ServerSynchronizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/FileContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/FileContainer.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -150,10 +127,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
+            <path>
+              <item name="Projekt od nowa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projekt od nowa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projekt od nowa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projekt od nowa" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
             <path>
               <item name="Projekt od nowa" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
@@ -168,6 +153,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -412,9 +398,9 @@
     <list>
       <item itemvalue="Application.Geralt" />
       <item itemvalue="Application.Jaskier" />
-      <item itemvalue="Application.ServerMain" />
       <item itemvalue="Application.Triss" />
       <item itemvalue="Application.Yennefer" />
+      <item itemvalue="Application.ServerMain" />
       <item itemvalue="JUnit.FileContainerTest" />
       <item itemvalue="JUnit.FileContainerTest.getOwner" />
       <item itemvalue="JUnit.ToolsTest" />
@@ -490,7 +476,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.10691574" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.10771065" />
       <window_info id="Structure" order="6" weight="0.25" />
       <window_info id="Favorites" order="7" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32936078" />
