@@ -11,25 +11,51 @@ import java.util.stream.Collectors;
 
 class ServerSynchronizer
 {
+    /**
+     * ObjectOutputStream for server
+     */
     private ObjectOutputStream out;
-    private ObjectInputStream in;
-    private ExecutorService threads;
-    private String[] PATHS;
-    private String userName;
-    private Socket socket;
-    private List<String> loggedUsers;
 
     /**
-     * @param in input stream from client
-     * @param out output stream for client
+     * ObjectInputStream for server
+     */
+    private ObjectInputStream in;
+
+    /**
+     * Thread pool
+     */
+    private ExecutorService threads;
+
+    /**
+     * Paths to server discs
+     */
+    private String[] PATHS;
+
+    /**
+     * Username of client this synchronizer was created for
+     */
+    private String userName;
+
+    /**
+     * Socket connecting server with client
+     */
+    private Socket socket;
+
+    /**
+     * List of available users
+     */
+    private List<String> availableUsers;
+
+    /**
+     * @param in input stream for server
+     * @param out output stream for server
      * @param PATHS server folders
      * @param threads thread pool
-     * @param userName username of client
+     * @param userName username of client this synchronizer is run for
      * @param socket Socket connecting client and server
-     * @param loggedUsers list of available users
+     * @param availableUsers list of available users
      */
-
-    ServerSynchronizer(ObjectInputStream in, ObjectOutputStream out, String[] PATHS, ExecutorService threads, String userName, Socket socket, List<String> loggedUsers)
+    ServerSynchronizer(ObjectInputStream in, ObjectOutputStream out, String[] PATHS, ExecutorService threads, String userName, Socket socket, List<String> availableUsers)
     {
         this.in = in;
         this.out = out;
@@ -37,7 +63,7 @@ class ServerSynchronizer
         this.threads = threads;
         this.userName = userName;
         this.socket = socket;
-        this.loggedUsers = loggedUsers;
+        this.availableUsers = availableUsers;
     }
 
 
@@ -136,9 +162,9 @@ class ServerSynchronizer
                     e1.printStackTrace();
                 }
                 System.out.println("Connection dropped with: " + userName);
-                loggedUsers.remove(userName);
-                System.out.println(loggedUsers);
-                //ServerMain.displayUsers(loggedUsers);
+                availableUsers.remove(userName);
+                System.out.println(availableUsers);
+                //ServerMain.displayUsers(availableUsers);
 
                 return;
             }

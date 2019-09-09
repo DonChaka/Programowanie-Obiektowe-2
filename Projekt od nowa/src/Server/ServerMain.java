@@ -1,5 +1,3 @@
-//TODO javadoc
-
 package Server;
 
 import Utils.Tools;
@@ -18,9 +16,18 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
+/**
+ * Class Initializing JavaFX and starting application
+ * @author Szymon Kuzik
+ * @version 1.0
+ */
 public class ServerMain extends Application
 {
 
+    /**
+     * Paths to different discs of server
+     */
     private final String[] PATHS ={
             "D:\\CatchBox\\Mount 1",
             "D:\\CatchBox\\Mount 2",
@@ -29,13 +36,31 @@ public class ServerMain extends Application
             "D:\\CatchBox\\Mount 5"
     };
 
+    /**
+     * Object server of ServerThread class
+     */
     private static ServerThread server = ServerThread.getServer();
 
+    /**
+     * Controller of JavaFX interface
+     */
     private static ServerController controller;
+
+    /**
+     * Thread pool
+     */
     private ExecutorService threads;
 
+    /**
+     * List of users that connected to server al least once
+     */
     static List<String> availableUsers;
 
+    /**
+     * Function converting file with .css style to string path
+     * @param style File with .css style
+     * @return String with path to style
+     */
     private String file2style(File style)
     {
         try
@@ -48,39 +73,50 @@ public class ServerMain extends Application
         }
     }
 
-        @Override
-        public void stop()
-        {
-            threads.shutdown();
-            threads.shutdownNow();
-            System.out.println("Closing app");
-            System.exit(0);
-        }
+    /**
+     * Killing all processes and closing app
+     */
+    @Override
+    public void stop()
+    {
+        threads.shutdown();
+        threads.shutdownNow();
+        System.out.println("Closing app");
+        System.exit(0);
+    }
 
-        @Override
-        public void start(Stage primaryStage) throws Exception
-        {
-            threads = Executors.newFixedThreadPool(20);
+    /**
+     * Method starting JavaFX
+     * @param primaryStage Main stage for JavaFX
+     * @throws Exception Can't load fxml file
+     */
+    @Override
+    public void start(Stage primaryStage) throws Exception
+    {
+        threads = Executors.newFixedThreadPool(20);
 
-            FXMLLoader loader = new FXMLLoader();
-            Parent root = loader.load(getClass().getResource("ServerView.fxml").openStream());
-            controller = loader.getController();
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("ServerView.fxml").openStream());
+        controller = loader.getController();
 
-            primaryStage.setTitle("CatchBox Server");
-            primaryStage.setResizable(false);
-            Scene scene = new Scene(root, 450, 400);
-            primaryStage.setScene(scene);
-            String styl = file2style(new File("D:\\GitHub\\Programowanie-Obiektowe-2\\Projekt od nowa\\src\\Server\\Victoria.css"));
-            if(styl != null)
-            scene.getStylesheets().add(styl);
-            primaryStage.show();
-            availableUsers = Tools.FileLister(PATHS[0]);
-            controller.displayUsers(availableUsers);
+        primaryStage.setTitle("CatchBox Server");
+        primaryStage.setResizable(false);
+        Scene scene = new Scene(root, 450, 400);
+        primaryStage.setScene(scene);
+        String styl = file2style(new File("D:\\GitHub\\Programowanie-Obiektowe-2\\Projekt od nowa\\src\\Server\\Victoria.css"));
+        if(styl != null)
+        scene.getStylesheets().add(styl);
+        primaryStage.show();
+        availableUsers = Tools.FileLister(PATHS[0]);
+        controller.displayUsers(availableUsers);
 
-            threads.submit(this::directoryWatcher);
-            server.init(2137, threads);
-        }
+        threads.submit(this::directoryWatcher);
+        server.init(2137, threads);
+    }
 
+    /**
+     * Function monitors folders created for clients and displays them as available users
+     */
     private void directoryWatcher()
     {
         Path folder = Paths.get(PATHS[0]);
@@ -112,16 +148,6 @@ public class ServerMain extends Application
             e.printStackTrace();
         }
     }
-
-
-
-        /*public static void displayUsers(List users)
-        {
-            controller.displayLoggedUsers(users);
-        }
-         */
-
-
 }
 
 

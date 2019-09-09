@@ -1,5 +1,3 @@
-//TODO javadoc
-
 package Client;
 
 import Utils.Tools;
@@ -16,20 +14,44 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ClientMain extends Application {
 
-    private String userName;
-    private String path;
-    private ExecutorService threads;
+/**
+ * Class setting and initializing JavaFX
+ * @author Szymon Kuzik
+ * @version 1.0
+ */
+public class ClientMain extends Application
+{
 
-    static ClientController controller;
+    /**
+     * Object client of ClientThread class
+     */
     static ClientThread client;
 
-    static public void setStatusLabel(String text)
-    {
-        controller.setStatusLabel(text);
-    }
+    /**
+     * Clients username
+     */
+    private String userName;
 
+    /**
+     * path to local folder
+     */
+    private String path;
+
+    /**
+     * thread pool
+     */
+    private ExecutorService threads;
+
+    /**
+     * JavaFX controller
+     */
+    static ClientController controller;
+
+
+    /**
+     * Killing all processes in thread pool
+     */
     @Override
     public void stop()
     {
@@ -40,6 +62,9 @@ public class ClientMain extends Application {
     }
 
 
+    /**
+     * Setting parameters and creating thread pool
+     */
     @Override
     public void init()
     {
@@ -50,6 +75,13 @@ public class ClientMain extends Application {
         threads = Executors.newFixedThreadPool(5);
     }
 
+
+    /**
+     * Method starting JavaFX
+     *
+     * @param primaryStage Main stage for JavaFX
+     * @throws Exception Can't load fxml file
+     */
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -73,11 +105,11 @@ public class ClientMain extends Application {
         threads.submit(this::directoryWatcher);
     }
 
+
     /**
     * Function oversees users folder and puts its content onto the application window.
     * If anything changes, function gets folder content again and updates list view
     */
-
     private void directoryWatcher()
     {
         Path folder = Paths.get(path);
@@ -111,6 +143,22 @@ public class ClientMain extends Application {
         }
     }
 
+
+    /**
+     * Method setting text on status label
+     * @param text text to be displayed on the status label
+     */
+    static public void setStatusLabel(String text)
+    {
+        controller.setStatusLabel(text);
+    }
+
+
+    /**
+     * launches application
+     *
+     * @param args username and path to folder to sync with server
+     */
     public static void main(String[] args)
     {
         launch(args);

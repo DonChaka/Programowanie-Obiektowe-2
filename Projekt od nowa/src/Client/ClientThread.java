@@ -8,20 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+
+/**
+ * Class connecting with server and starting synchronization thread
+ * @author Szymon Kuzik
+ * @version 1.0
+ */
 class ClientThread
 {
-
-    private Socket socket;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
-
-    private ExecutorService threads;
-
+    /**
+     * Path to users folder
+     */
     private String path;
-    private String userName;
 
+    /**
+     * List of files to be sent to other users
+     */
     private List<FileContainer> prioritizedFiles;
 
+    /**
+     * Method packing file into FileContainer and adding
+     * it to prioritized list of files to send to server
+     * @param name name of the file to be sent
+     * @param receiver reciver of the file
+     */
     void sendFile(String name, String receiver)
     {
         if(name == null || receiver.equals(""))
@@ -45,17 +55,22 @@ class ClientThread
 
     }
 
+    /**
+     *
+     * @param ip ip of the server
+     * @param port port on which server is running
+     * @param path path to users folder
+     * @param userName client username
+     * @param threads thread pool
+     * @throws IOException
+     */
     ClientThread(String ip, int port, String path, String userName, ExecutorService threads) throws IOException
     {
-        this.socket = new Socket(ip, port);
-        this.in = new ObjectInputStream(socket.getInputStream());
-        this.out = new ObjectOutputStream(socket.getOutputStream());
+        Socket socket = new Socket(ip, port);
+        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         out.writeObject(userName);
         this.path = path;
-        this.userName = userName;
-        this.threads = threads;
-
-
 
         prioritizedFiles = new ArrayList<>();
 

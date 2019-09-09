@@ -1,5 +1,3 @@
-//TODO javadoc
-
 package Server;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -12,24 +10,51 @@ import java.util.List;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
+
+/**
+ * JavaFX controller for server interface
+ *
+ * @author Szymon Kuzik
+ * @version 1.0
+ */
 public class ServerController {
 
-
+    /**
+     * Chosen disc to display files default value: Mount 1
+     */
     private String chosenDisc = "Mount 1";
+
+    /**
+     * Base for paths to displaying users files
+     */
     private String base = "D:\\CatchBox\\";
 
+    /**
+     * Main constructor
+     */
     public ServerController() {}
-    //private void initlialize() {}
 
+    /**
+     * Lisr of users that connected to server at least once
+     */
     @FXML
     private ListView<String> loggedUsers;
 
+    /**
+     * List of files of chosen user
+     */
     @FXML ListView<String> filesView;
 
+    /**
+     * Menu to switch between server discs
+     */
     @FXML
     private MenuButton discMenu;
 
 
+    /**
+     * Method to change disc from which files of user are displayed
+     */
     @FXML
     private void chooseDisc1()
     {
@@ -38,6 +63,9 @@ public class ServerController {
         displayFiles();
     }
 
+    /**
+     * Method to change disc from which files of user are displayed
+     */
     @FXML
     private void chooseDisc2()
     {
@@ -46,7 +74,9 @@ public class ServerController {
         displayFiles();
     }
 
-
+    /**
+     * Method to change disc from which files of user are displayed
+     */
     @FXML
     private void chooseDisc3()
     {
@@ -55,7 +85,9 @@ public class ServerController {
         displayFiles();
     }
 
-
+    /**
+     * Method to change disc from which files of user are displayed
+     */
     @FXML
     private void chooseDisc4()
     {
@@ -64,7 +96,9 @@ public class ServerController {
         displayFiles();
     }
 
-
+    /**
+     * Method to change disc from which files of user are displayed
+     */
     @FXML
     private void chooseDisc5()
     {
@@ -73,6 +107,9 @@ public class ServerController {
         displayFiles();
     }
 
+    /**
+     * Method displaying files based on selected user and chosen disc
+     */
     @FXML
     private void displayFiles()
     {
@@ -87,6 +124,10 @@ public class ServerController {
         System.out.println(base + chosenDisc + "\\" + user + "\\");
     }
 
+    /**
+     * Method displaying list of users connected to the server at least once
+     * @param logged List of users
+     */
     @FXML
     void displayUsers(List<String> logged)
     {
